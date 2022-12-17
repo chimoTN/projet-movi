@@ -16,7 +16,7 @@ Un utilisateur peut :
 ## Technologies utilisées
 
 - Front-end : React
-- Back-end : NodeJs avec le framework NestJs
+- Back-end : Java et le framework Spring Boot ainsi que Hibernate
 - Base de données : PostgreSQL
 
 ## Gestion de projet
