@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { FaListAlt, FaCheckSquare, FaPlusSquare, FaTrash, FaCaretSquareRight } from 'react-icons/fa'
+import { FaListAlt, FaCaretSquareRight } from 'react-icons/fa'
 
 class HomeComponenent extends React.Component {
     render() {

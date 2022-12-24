@@ -1,5 +1,7 @@
 import React from 'react'
 import MoviesService from '../services/MovieService'
+import { FaPlusSquare } from 'react-icons/fa'
+
 
 class MoviesComponent extends React.Component {
     constructor(props) {
@@ -23,32 +25,27 @@ class MoviesComponent extends React.Component {
                 {
                     this.state.movies.length === 0 ?
                         (
-                            <h2>Aucun film enregistré</h2>
+                            <h2 className='text-center no-data'>Aucun film enregistré</h2>
                         )
-                        : (<table className='table table-striped'>
-                            <thead>
-                                <tr>
-                                    <td>Movies ID</td>
-                                    <td>Title</td>
-                                    <td>Réalisateur</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        : (
+                            <div className='MovieComponent'>
                                 {
                                     this.state.movies.map(
                                         movie =>
-                                            <tr key={movie.idMovie}>
-                                                <td>{movie.idMovie}</td>
-                                                <td>{movie.title}</td>
-                                                <td>{movie.producer}</td>
-                                                <td>{movie.description}</td>
-                                            </tr>
+                                            <div className='box' key={movie.idMovie}>
+                                                <div className='boxTitle'>{movie.title}</div>
+                                                <br />
+                                                <div className='boxCorps'>
+                                                    <b>Réalisateur : </b>{movie.producer} <br /><br />
+                                                    <p><b>Description : </b></p>{movie.description}
+                                                </div>
+                                                <button className='boxButton'><FaPlusSquare /></button>
+                                            </div>
                                     )
                                 }
+                            </div>
 
-                            </tbody>
-                        </table>)
+                        )
                 }
 
             </>
