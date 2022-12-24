@@ -19,30 +19,38 @@ class MoviesComponent extends React.Component {
         return (
             <>
                 <h1 className='text-center'>Liste des Films</h1>
-                <table className='table table-striped'>
-                    <thead>
-                        <tr>
-                            <td>Movies ID</td>
-                            <td>Title</td>
-                            <td>Réalisateur</td>
-                            <td>Description</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.state.movies.map(
-                                movie =>
-                                    <tr key={movie.idMovie}>
-                                        <td>{movie.idMovie}</td>
-                                        <td>{movie.title}</td>
-                                        <td>{movie.producer}</td>
-                                        <td>{movie.description}</td>
-                                    </tr>
-                            )
-                        }
 
-                    </tbody>
-                </table>
+                {
+                    this.state.movies.length === 0 ?
+                        (
+                            <h2>Aucun film enregistré</h2>
+                        )
+                        : (<table className='table table-striped'>
+                            <thead>
+                                <tr>
+                                    <td>Movies ID</td>
+                                    <td>Title</td>
+                                    <td>Réalisateur</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    this.state.movies.map(
+                                        movie =>
+                                            <tr key={movie.idMovie}>
+                                                <td>{movie.idMovie}</td>
+                                                <td>{movie.title}</td>
+                                                <td>{movie.producer}</td>
+                                                <td>{movie.description}</td>
+                                            </tr>
+                                    )
+                                }
+
+                            </tbody>
+                        </table>)
+                }
+
             </>
 
 

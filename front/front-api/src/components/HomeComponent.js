@@ -9,7 +9,7 @@ class HomeComponenent extends React.Component {
                 <div className='titre'>
                     <p>BIENVENUE SUR LIBRARY MOVIES</p>
                 </div>
-                <Link to='allMovies' className="homeBoutton1 homeButton"> <FaCaretSquareRight /> Parcourir Films</Link>
+                <Link to='getAllMovies' className="homeBoutton1 homeButton"> <FaCaretSquareRight /> Parcourir Films</Link>
                 <Link to='getMyList' className="homeBoutton2 homeButton"> <FaListAlt /> Consulter Ma Liste </Link>
 
             </>
