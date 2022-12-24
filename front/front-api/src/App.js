@@ -1,9 +1,19 @@
+import React from 'react'
+import HomeComponenent from './components/HomeComponent.js'
+import { BrowserRouter, Switch, Route, Routes } from 'react-router-dom';
+
+
 function App() {
   return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
-  );
+    <section>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomeComponenent />} />
+        </Routes>
+      </BrowserRouter>
+    </section>
+  )
+
 }
 
-export default App;
+export default App
