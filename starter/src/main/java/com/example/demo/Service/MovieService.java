@@ -12,10 +12,7 @@ public class MovieService {
     MovieRepository movieRepository;
 
     public Movie saveMovie(Movie movie){
-
-        Movie saveMovie = movieRepository.save(movie);
-
-        return saveMovie;
+        return movieRepository.save(movie);
     }
 
     public Iterable<Movie> getAllMovie(){
