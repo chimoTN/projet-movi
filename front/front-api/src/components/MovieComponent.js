@@ -34,9 +34,8 @@ class MoviesComponent extends React.Component {
                                         movie =>
                                             <div className='box' key={movie.idMovie}>
                                                 <div className='boxTitle'>{movie.title}</div>
-                                                <br />
                                                 <div className='boxCorps'>
-                                                    <b>Réalisateur : </b>{movie.producer} <br /><br />
+                                                    <b>Réalisateur : </b>{movie.producer}
                                                     <p><b>Description : </b></p>{movie.description}
                                                 </div>
                                                 <button className='boxButton'><FaPlusSquare /></button>
