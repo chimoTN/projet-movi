@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const USERS_REST_API_URL = 'http://localhost:8080/getAllMovies'
+const MOVIES_REST_API_URL = 'http://localhost:8080/getAllMovies'
 
 class MoviesService {
-    getUsers() {
-        return axios.get(USERS_REST_API_URL)
+    getMovies() {
+        return axios.get(MOVIES_REST_API_URL)
     }
 }
 export default new MoviesService()

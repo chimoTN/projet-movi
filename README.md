@@ -7,9 +7,10 @@ dans sa bilbliothèque virtuelle.
 
 Un utilisateur peut :
 
-- Afficher ses films
-- Afficher les détails d'un film (titre, réalisateur, acteurs, résumé, nombre de vues du film)
+- Afficher le catalogue des films
 - Ajouter un film dans sa liste
+- Afficher sa liste
+- Afficher les détails d'un film (titre, réalisateur, acteurs, résumé, nombre de vues du film)
 - Modifier un film
 - Supprimer un film
 
@@ -19,7 +20,7 @@ Un utilisateur peut :
 - Back-end : Java et le framework Spring Boot ainsi que Hibernate
 - Base de données : PostgreSQL
 
-## Gestion de projet
+## Versioning
 
 Workflow git utilisé : Features Branches + Merge Request
 

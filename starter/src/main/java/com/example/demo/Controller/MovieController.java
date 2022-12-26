@@ -12,11 +12,17 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
+    /**
+     * Get movies' catalogue
+     * */
     @GetMapping("/getAllMovies")
     public Iterable<Movie> getAllMovies(){
         return movieService.getAllMovie();
     }
 
+    /**
+     * Add a movie
+     * */
     @PostMapping("/addMovie")
     public Movie createMovie(@RequestBody Movie movie) {
         return movieService.saveMovie(movie);

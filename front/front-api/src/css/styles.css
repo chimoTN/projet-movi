@@ -12,9 +12,8 @@ body {
 .titre {
     height: 50px;
     width: 500px;
-    position: absolute;
-    margin-left: 424px;
-    margin-top: 200px;
+    margin: auto;
+    margin-top: 150px;
     text-align: center;
     font-size: 2em;
 }
@@ -31,14 +30,14 @@ body {
 }
 
 .homeBoutton1 {
-    margin-left: 333px;
+    margin-left: 450px;
     padding: 21px 30px;
-    margin-top: 333px;
+    margin-top: 210px;
 }
 
 .homeBoutton2 {
-    margin-left: 790px;
-    margin-top: 333px;
+    margin-left: 850px;
+    margin-top: 210px;
     padding: 21px 60px;
 
 }

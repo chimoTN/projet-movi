@@ -1,9 +1,9 @@
 import React from 'react'
-import MoviesService from '../services/MovieService'
-import { FaPlusSquare } from 'react-icons/fa'
+import MoviesService from '../services/UserMovieListService'
+import { FaMinusSquare } from 'react-icons/fa'
 
 
-class MoviesComponent extends React.Component {
+class MyListComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -12,7 +12,7 @@ class MoviesComponent extends React.Component {
     }
 
     componentDidMount() {
-        MoviesService.getMovies().then((response) => {
+        MoviesService.getUserMovieList().then((response) => {
             this.setState({ movies: response.data })
         })
     }
@@ -20,7 +20,7 @@ class MoviesComponent extends React.Component {
     render() {
         return (
             <>
-                <h1 className='text-center'>Liste des Films</h1>
+                <h1 className='text-center'>Ma Liste</h1>
 
                 {
                     this.state.movies.length === 0 ?
@@ -32,13 +32,13 @@ class MoviesComponent extends React.Component {
                                 {
                                     this.state.movies.map(
                                         movie =>
-                                            <div className='box' key={movie.idMovie}>
-                                                <div className='boxTitle'>{movie.title}</div>
+                                            <div className='box' key={movie.idListMovie}>
+                                                <div className='boxTitle'>{movie.movie.title}</div>
                                                 <div className='boxCorps'>
-                                                    <b>Réalisateur : </b>{movie.producer}
-                                                    <p><b>Description : </b></p>{movie.description}
+                                                    <b>Réalisateur : </b>{movie.movie.producer}
+                                                    <p><b>Description : </b></p>{movie.movie.description}
                                                 </div>
-                                                <button className='boxButton'><FaPlusSquare /></button>
+                                                <button className='boxButton'><FaMinusSquare /></button>
                                             </div>
                                     )
                                 }
@@ -56,4 +56,4 @@ class MoviesComponent extends React.Component {
 
 }
 
-export default MoviesComponent
+export default MyListComponent
