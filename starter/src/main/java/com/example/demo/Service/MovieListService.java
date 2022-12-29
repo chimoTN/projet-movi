@@ -20,7 +20,10 @@ public class MovieListService {
         return movieListRepository.getListUserById(idUser);
     }
 
-    public MovieList getDetailMovie(int idUser, int idMovie){
+    /**
+     * @return : movie's detail
+     * */
+    public List<MovieList> getDetailMovie(int idUser, int idMovie){
         return movieListRepository.getDetailMovie(idUser,idMovie);
     }
 
