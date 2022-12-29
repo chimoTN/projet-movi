@@ -23,4 +23,9 @@ public class MovieListController {
     public Iterable<MovieList> getMyList(@PathVariable Integer idUser){
         return movieListService.getMyListByIdUser(idUser);
     }
+
+    @GetMapping("/getDetailMovie/{idUser}/{idMovie}")
+    public MovieList getDetailMovie(@PathVariable int idUser, @PathVariable int idMovie){
+        return movieListService.getDetailMovie(idUser,idMovie);
+    }
 }

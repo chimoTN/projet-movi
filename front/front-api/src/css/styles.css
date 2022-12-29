@@ -86,20 +86,18 @@ body {
     justify-content: center;
     align-items: center;
     justify-items: center;
+    text-align: center;
 }
 
 .boxCorps {
     font-size: 15px;
 }
 
-.boxButton {
-    height: 40px;
-    width: 40px;
-    background-color: #60CDDC;
-    left: 100px;
-    margin-left: 260px;
-    margin-top: 19px;
-
+.divButton {
+    display: flex;
+    margin-left: 130px;
+    margin-top: 30px;
+    flex-direction: row;
 }
 
 .no-data {

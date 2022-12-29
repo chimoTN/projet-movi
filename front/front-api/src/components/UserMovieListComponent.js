@@ -1,6 +1,9 @@
 import React from 'react'
 import MoviesService from '../services/UserMovieListService'
-import { FaMinusSquare } from 'react-icons/fa'
+import { FaMinusSquare, FaEye } from 'react-icons/fa'
+import { Form, Input, Button, Space } from 'antd';
+import { EyeOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom'
 
 
 class MyListComponent extends React.Component {
@@ -38,10 +41,24 @@ class MyListComponent extends React.Component {
                                                     <b>Réalisateur : </b>{movie.movie.producer}
                                                     <p><b>Description : </b></p>{movie.movie.description}
                                                 </div>
-                                                <button className='boxButton'><FaMinusSquare /></button>
+                                                <div className='divButton'>
+                                                    <Link to={`/getDetailMovie/${movie.user.idUser}/${movie.movie.idMovie}`}>
+                                                        <Button type="primary" block>
+                                                            Détail
+                                                        </Button>
+                                                    </Link>
+
+                                                    <Button type="primary" block>
+                                                        Supprimer
+                                                    </Button>
+                                                </div>
                                             </div>
+
+
                                     )
+
                                 }
+
                             </div>
 
                         )
