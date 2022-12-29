@@ -1,59 +1,45 @@
-import React, { useState, useEffect } from "react";
-import Axios from 'axios'
+import React, { useEffect, useState, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Space } from 'antd';
+import { Descriptions } from 'antd';
+import axios from 'axios';
 
 
-
-const DetailMovie = () => {
-    const [data, setData] = useState();
-
-    const [isEmpty, setEmpty] = useState(false);
-
+const DetailMovieComponent = () => {
+    const [data, setData] = useState([]);
     let params = useParams()
-    const URL = `http://localhost:8080/getDetailMovie/${params.idUser}/${params.idMovie}`;
-
-    //go chercher UN film
-    const getMovieDetail = () => {
-        Axios
-            .get(URL)
-            .then(response => setData(response.data))
-            .catch(error => console.log('error = ', error))
-
-        console.log("data : ", data)
-    };
+    const URL = `http://localhost:8080/getDetailMovie/${params.idUser}/${params.idMovie}`
 
     useEffect(() => {
-        getMovieDetail();
-        if (data != undefined) {
-            setEmpty(true);
-        } else {
-            setEmpty(false);
-        }
+        const fetchData = async () => {
+            const result = await axios(
+                URL
+            );
+            setData(result.data)
+        };
+        fetchData();
     }, []);
 
     return (
-        <>
-            {isEmpty === true ? "cc" : "not work"}
-            {/* <h1 className='text-center'>{data.movie.title}</h1>
 
-            <div className='box'>
-                <div className='boxCorps'>
-                    <b>Réalisateur : </b>{data.movie.producer}
-                    <p><b>Description : </b></p>{data.movie.description}
-                </div>
-                <div className='divButton'>
-                    <Button type="primary" block>
-                        Modifier
-                    </Button>
-                </div>
-            </div> */}
+        <Fragment>
+            <ul>
+                {data.map(item => (
+                    <li key={item.idListMovie}>
+                        <p>{item.movie.title}</p>
+                        <p>{item.movie.producer}</p>
+                        <p>{item.movie.description}</p>
+                        <p>{item.viewCount}</p>
+                        <p>{item.note}</p>
 
-        </>
+                    </li>
+                ))}
+
+            </ul>
+        </Fragment>
     )
 
 
 
 }
 
-export default DetailMovie
+export default DetailMovieComponent
