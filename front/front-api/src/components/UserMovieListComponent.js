@@ -1,76 +1,55 @@
-import React from 'react'
-import MoviesService from '../services/UserMovieListService'
-import { FaMinusSquare, FaEye } from 'react-icons/fa'
-import { Form, Input, Button, Space } from 'antd';
-import { EyeOutlined } from '@ant-design/icons';
+import axios from 'axios';
+import React, { useEffect, useState, Fragment } from 'react';
+import { Button } from 'antd';
 import { Link } from 'react-router-dom'
+import { RestOutlined, EyeOutlined } from '@ant-design/icons';
 
 
-class MyListComponent extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            movies: []
-        }
-    }
+const MyListComponent = () => {
+    const [data, setData] = useState([]);
+    const URL = "http://localhost:8080/getMyList/1"
 
-    componentDidMount() {
-        MoviesService.getUserMovieList().then((response) => {
-            this.setState({ movies: response.data })
-        })
-    }
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios(
+                URL
+            );
+            setData(result.data)
+        };
+        fetchData();
+    }, []);
 
-    render() {
-        return (
-            <>
-                <h1 className='text-center'>Ma Liste</h1>
+    return (
 
-                {
-                    this.state.movies.length === 0 ?
-                        (
-                            <h2 className='text-center no-data'>Aucun film enregistré</h2>
-                        )
-                        : (
-                            <div className='MovieComponent'>
-                                {
-                                    this.state.movies.map(
-                                        movie =>
-                                            <div className='box' key={movie.idListMovie}>
-                                                <div className='boxTitle'>{movie.movie.title}</div>
-                                                <div className='boxCorps'>
-                                                    <b>Réalisateur : </b>{movie.movie.producer}
-                                                    <p><b>Description : </b></p>{movie.movie.description}
-                                                </div>
-                                                <div className='divButton'>
-                                                    <Link to={`/getDetailMovie/${movie.user.idUser}/${movie.movie.idMovie}`}>
-                                                        <Button type="primary" block>
-                                                            Détail
-                                                        </Button>
-                                                    </Link>
+        <Fragment>
+            <h1 className='text-center'>Ma Liste</h1>
 
-                                                    <Button type="primary" block>
-                                                        Supprimer
-                                                    </Button>
-                                                </div>
-                                            </div>
-
-
-                                    )
-
-                                }
+            {
+                data.length === 0 ?
+                    (
+                        <h2 className='no-data'>Aucun film enregisté dans votre liste</h2>
+                    )
+                    :
+                    <div className='MovieComponent'>
+                        {data.map(movie => (
+                            <div className='box' key={movie.idListMovie}>
+                                <div className='boxTitle'>{movie.movie.title}</div>
+                                <div className='boxCorps'>
+                                    <b>Réalisateur : </b>{movie.movie.producer}
+                                    <p><b>Description : </b></p>{movie.movie.description}
+                                </div>
+                                <Link to={`/getDetailMovie/${movie.user.idUser}/${movie.movie.idMovie}`}>
+                                    <Button type="primary" block><EyeOutlined /></Button>
+                                </Link>
+                                <Button type="primary" block danger><RestOutlined /></Button>
 
                             </div>
+                        ))}
+                    </div>
+            }
+        </Fragment>
 
-                        )
-                }
-
-            </>
-
-
-
-        )
-    }
-
+    )
 }
 
 export default MyListComponent

@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaListAlt, FaCaretSquareRight } from 'react-icons/fa'
+import { Button } from 'antd';
 
-class HomeComponenent extends React.Component {
-    render() {
-        return (
-            <>
-                <div className='titre'>
-                    <p>BIENVENUE SUR LIBRARY MOVIES</p>
-                </div>
-                <Link to='getAllMovies' className="homeBoutton1 homeButton"> <FaCaretSquareRight /> Parcourir Films</Link>
-                <Link to='getMyList/1' className="homeBoutton2 homeButton"> <FaListAlt /> Ma Liste </Link>
+const HomeComponenent = () => {
+    const [size] = useState('large');
 
-            </>
-        )
-    }
+    return (
+        <>
+            <div className='titre'>
+                <p>BIENVENUE SUR LIBRARY MOVIES</p>
+            </div>
+            <Link to='getMyList/1'>
+                <Button type="primary" size={size} className='buttonPositionHome'>
+                    START
+                </Button>
+            </Link>
+            <br /><br />
+            <Link to='getAllMovies' > Parcourir Films</Link>
+            <Link to='getMyList/1'> Ma Liste </Link>
+
+        </>
+    )
+
 
 
 }

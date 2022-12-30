@@ -1,59 +1,51 @@
-import React from 'react'
-import MoviesService from '../services/MovieService'
-import { FaPlusSquare } from 'react-icons/fa'
+import { PlusOutlined, EyeOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+import React, { useEffect, useState, Fragment } from 'react';
+import axios from 'axios';
 
+const MoviesComponent = () => {
+    const [data, setData] = useState([]);
+    const URL = "http://localhost:8080/getAllMovies"
 
-class MoviesComponent extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            movies: []
-        }
-    }
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios(
+                URL
+            );
+            setData(result.data)
+        };
+        fetchData();
+    }, []);
 
-    componentDidMount() {
-        MoviesService.getMovies().then((response) => {
-            this.setState({ movies: response.data })
-        })
-    }
+    return (
 
-    render() {
-        return (
-            <>
-                <h1 className='text-center'>Liste des Films</h1>
+        <Fragment>
+            <h1 className='text-center'>Catalogue Films</h1>
 
-                {
-                    this.state.movies.length === 0 ?
-                        (
-                            <h2 className='text-center no-data'>Aucun film enregistré</h2>
-                        )
-                        : (
-                            <div className='MovieComponent'>
-                                {
-                                    this.state.movies.map(
-                                        movie =>
-                                            <div className='box' key={movie.idMovie}>
-                                                <div className='boxTitle'>{movie.title}</div>
-                                                <div className='boxCorps'>
-                                                    <b>Réalisateur : </b>{movie.producer}
-                                                    <p><b>Description : </b></p>{movie.description}
-                                                </div>
-                                                <button className='boxButton'><FaPlusSquare /></button>
-                                            </div>
-                                    )
-                                }
+            {
+                data.length === 0 ?
+                    (
+                        <h2 className='no-data'>Aucun film enregisté dans votre liste</h2>
+                    )
+                    :
+                    <div className='MovieComponent'>
+                        {data.map(movie => (
+                            <div className='box' key={movie.idMovie}>
+                                <div className='boxTitle'>{movie.title}</div>
+                                <div className='boxCorps'>
+                                    <b>Réalisateur : </b>{movie.producer}
+                                    <p><b>Description : </b></p>{movie.description}
+                                </div>
+                                <Button type="primary" block><PlusOutlined /></Button>
+                                <Button type="primary" block><EyeOutlined /></Button>
+
                             </div>
+                        ))}
+                    </div>
+            }
+        </Fragment>
 
-                        )
-                }
-
-            </>
-
-
-
-        )
-    }
-
+    )
 }
 
 export default MoviesComponent

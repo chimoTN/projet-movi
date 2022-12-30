@@ -1,6 +1,6 @@
 :root {
-    --color-primary: #60CDDC;
-    --color-secondary: #F5F5F5;
+    --color-primary: #bae0ff;
+    --color-secondary: #fafafa;
     --color-black: #252525
 }
 
@@ -18,41 +18,16 @@ body {
     font-size: 2em;
 }
 
-.homeButton {
-    position: absolute;
-    width: 226px;
-    height: 79px;
-    background: var(--color-secondary);
-    border-radius: 10px;
-    font-size: 20px;
-    text-decoration: none;
-    color: black;
-}
-
-.homeBoutton1 {
-    margin-left: 450px;
-    padding: 21px 30px;
-    margin-top: 210px;
-}
-
-.homeBoutton2 {
-    margin-left: 850px;
-    margin-top: 210px;
-    padding: 21px 60px;
-
-}
-
-.homeBoutton1:hover {
-    box-shadow: 5px 5px 5px var(--color-black);
-}
-
-.homeBoutton2:hover {
-    box-shadow: 5px 5px 5px var(--color-black);
+.buttonPositionHome {
+    margin-left: 590px;
+    margin-top: 100px;
+    height: 200px;
+    width: 200px;
 }
 
 /*  Home    */
 
-/*  Movies    */
+/*  Card    */
 
 .MovieComponent {
     margin: 20px auto;
@@ -71,13 +46,20 @@ body {
     cursor: pointer;
     transition: transform 200ms ease-in;
     width: 330px;
-    height: 390px;
-    background-color: #F5F5F5;
+    height: 410px;
+    background-color: var(--color-secondary);
     padding: 10px;
     padding-top: 15px;
     padding-left: 15px;
     margin: 40px 20px;
     border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.view-update {
+    width: 410px;
+    height: 500px;
 }
 
 .boxTitle {
@@ -100,10 +82,11 @@ body {
     flex-direction: row;
 }
 
+/*  Card    */
+
 .no-data {
     position: relative;
     margin-top: 200px;
     color: red;
+    text-align: center;
 }
-
-/*  Movies    */
