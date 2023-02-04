@@ -1,29 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
-const HomeComponenent = () => {
-    const [size] = useState('large');
-
+const HomeComponent = () => {
     return (
         <>
             <div className='titre'>
                 <p>BIENVENUE SUR LIBRARY MOVIES</p>
             </div>
             <Link to='getMyList/1'>
-                <Button type="primary" size={size} className='buttonPositionHome'>
+                <Button type="primary" size='large' className='buttonPositionHome'>
                     START
                 </Button>
             </Link>
             <br /><br />
-            <Link to='getAllMovies' > Parcourir Films</Link>
-            <Link to='getMyList/1'> Ma Liste </Link>
-
         </>
     )
-
-
-
 }
 
-export default HomeComponenent
+export default HomeComponent

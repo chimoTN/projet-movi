@@ -37,6 +37,7 @@ const DetailMovieComponent = () => {
                             <b>Notes : </b>
                             <Input value={movie.note} />
                         </div>
+                        <br></br>
                         <Button type="primary" block>Modifier</Button>
                         <Link to="/getMyList/1">
                             <Button type="primary" block danger>Retour</Button>

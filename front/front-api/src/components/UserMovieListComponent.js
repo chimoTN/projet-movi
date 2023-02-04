@@ -22,7 +22,7 @@ const MyListComponent = () => {
     return (
 
         <Fragment>
-            <h1 className='text-center'>Ma Liste</h1>
+            <h2 className='text-center'>Ma Liste</h2>
 
             {
                 data.length === 0 ?
@@ -38,6 +38,7 @@ const MyListComponent = () => {
                                     <b>Réalisateur : </b>{movie.movie.producer}
                                     <p><b>Description : </b></p>{movie.movie.description}
                                 </div>
+                                <br />
                                 <Link to={`/getDetailMovie/${movie.user.idUser}/${movie.movie.idMovie}`}>
                                     <Button type="primary" block><EyeOutlined /></Button>
                                 </Link>

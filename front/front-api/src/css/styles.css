@@ -1,11 +1,12 @@
 :root {
-    --color-primary: #bae0ff;
-    --color-secondary: #fafafa;
+    --color-primary: #fff;
+    --color-secondary: #252A36;
     --color-black: #252525
 }
 
 body {
     background: var(--color-primary);
+    color: #fff;
 }
 
 /*  Home    */
@@ -16,6 +17,7 @@ body {
     margin-top: 150px;
     text-align: center;
     font-size: 2em;
+    color: #252A36
 }
 
 .buttonPositionHome {
