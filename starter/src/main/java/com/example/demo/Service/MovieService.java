@@ -19,4 +19,8 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
+    public Movie getMovie(int idMovie){
+        return movieRepository.getReferenceById(idMovie);
+    }
+
 }

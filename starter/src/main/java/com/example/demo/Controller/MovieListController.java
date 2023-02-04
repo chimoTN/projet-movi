@@ -3,10 +3,7 @@ package com.example.demo.Controller;
 import com.example.demo.Modele.MovieList;
 import com.example.demo.Service.MovieListService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,7 @@ public class MovieListController {
     public Iterable<MovieList> getMyList(@PathVariable Integer idUser){
         return movieListService.getMyListByIdUser(idUser);
     }
+
     /**
      * @param idUser : user's id
      * @param idMovie : movie's id
@@ -33,5 +31,15 @@ public class MovieListController {
     @GetMapping("/getDetailMovie/{idUser}/{idMovie}")
     public List<MovieList> getDetailMovie(@PathVariable int idUser, @PathVariable int idMovie){
         return movieListService.getDetailMovie(idUser,idMovie);
+    }
+
+    /**
+     * @param idUser : user's id
+     * @param idMovie : movie's id
+     * @return MovieList : return movieList
+     * */
+    @PostMapping("/addMovieOnAList/{idUser}/{idMovie}")
+    public MovieList addMovieOnUserList(@RequestBody MovieList movieOnList, @PathVariable int idUser,@PathVariable int idMovie){
+        return movieListService.addMovieOnUserList(movieOnList, idUser, idMovie);
     }
 }

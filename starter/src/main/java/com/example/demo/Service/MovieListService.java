@@ -1,6 +1,8 @@
 package com.example.demo.Service;
 
+import com.example.demo.Modele.Movie;
 import com.example.demo.Modele.MovieList;
+import com.example.demo.Modele.User;
 import com.example.demo.Repository.MovieListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,12 @@ public class MovieListService {
 
     @Autowired
     MovieListRepository movieListRepository;
+
+    @Autowired
+    MovieService movieService;
+
+    @Autowired
+    UserService userService;
 
     /**
      * @return : user's movies list
@@ -25,6 +33,14 @@ public class MovieListService {
      * */
     public List<MovieList> getDetailMovie(int idUser, int idMovie){
         return movieListRepository.getDetailMovie(idUser,idMovie);
+    }
+
+    public MovieList addMovieOnUserList(MovieList movieOnList, int idUser, int idMovie){
+        Movie movie = movieService.getMovie(idMovie);
+        User user = userService.getUser(idUser);
+        movieOnList.setMovie(movie);
+        movieOnList.setUser(user);
+        return movieListRepository.save(movieOnList);
     }
 
 }
