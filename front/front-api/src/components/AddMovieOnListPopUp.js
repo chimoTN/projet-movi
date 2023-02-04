@@ -1,0 +1,84 @@
+import React from 'react';
+import { Button, Modal, Form, Input } from 'antd';
+import { useState } from 'react';
+import Axios from 'axios';
+
+const AddMovieOnListPopUpComponent = (props) => {
+    const { openPopUp, setOpenPopUp, addMovie } = props
+
+    const [movie, setMovie] = useState(
+        {
+            note: 3,
+            viewCount: 0
+        }
+    )
+
+    const addOneMovie = () => {
+        const URL_addMovie = "http://localhost:8080/addMovieOnAList/1/" + addMovie[0]
+        Axios
+            .post(URL_addMovie,
+                {
+                    note: movie.note,
+                    viewCount: movie.viewCount
+                })
+            .then((response) => console.log("rep = ", response))
+            .catch((error) => console.log("erreur => ", error))
+
+        handleOk()
+    }
+
+    const updateMovie = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        setMovie({ ...movie, [name]: value })
+    }
+
+    const handleOk = () => {
+        setOpenPopUp(false);
+    };
+    const handleCancel = () => {
+        setOpenPopUp(false);
+    };
+
+    return (
+        <>
+            <Modal
+                title={addMovie[1]}
+                open={openPopUp}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        Annuler
+                    </Button>,
+                    <Button key="submit" type="primary" onClick={addOneMovie}>
+                        Ajouter
+                    </Button>
+                ]}
+            >
+                <p>Ajouter ce film dans votre liste ?</p>
+                <Form>
+                    <Form.Item label="Note">
+                        <Input
+                            name="note"
+                            value={movie.note}
+                            onChange={updateMovie}
+                        />
+
+                    </Form.Item>
+
+                    <Form.Item label="Nombre de vue ">
+                        <Input
+                            name="viewCount"
+                            value={movie.viewCount}
+                            onChange={updateMovie}
+
+                        />
+                    </Form.Item>
+                </Form>
+            </Modal>
+        </>
+    )
+}
+
+export default AddMovieOnListPopUpComponent

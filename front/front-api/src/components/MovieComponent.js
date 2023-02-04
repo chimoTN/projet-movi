@@ -2,8 +2,21 @@ import { PlusOutlined, EyeOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import React, { useEffect, useState, Fragment } from 'react';
 import axios from 'axios';
+import AddMovieOnListPopUpComponent from './AddMovieOnListPopUp';
 
 const MoviesComponent = () => {
+    const [openPopUp, setOpenPopUp] = useState(false);
+    const [addMovie, setAddMovie] = useState([]);
+
+
+    const openPopUpFunction = (e, bool, title) => {
+        if (addMovie != null && e.target.id != null) {
+            const movie = [e.target.id, title];
+            setOpenPopUp(bool)
+            setAddMovie(movie)
+        }
+    }
+
     const [data, setData] = useState([]);
     const URL = "http://localhost:8080/getAllMovies"
 
@@ -36,15 +49,18 @@ const MoviesComponent = () => {
                                     <b>Réalisateur : </b>{movie.producer}
                                     <p><b>Description : </b></p>{movie.description}
                                 </div>
-                                <Button type="primary" block><PlusOutlined /></Button>
+                                <Button id={movie.idMovie} htmlType="submit" onClick={(e) => openPopUpFunction(e, true, movie.title)} type="primary" block><PlusOutlined /></Button>
                                 <Button type="primary" block><EyeOutlined /></Button>
 
                             </div>
                         ))}
                     </div>
             }
-        </Fragment>
 
+            {openPopUp && (
+                < AddMovieOnListPopUpComponent openPopUp={openPopUp} setOpenPopUp={setOpenPopUp} addMovie={addMovie} />
+            )}
+        </Fragment>
     )
 }
 
