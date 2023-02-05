@@ -22,7 +22,7 @@ const MyListComponent = () => {
     return (
 
         <Fragment>
-            <h2 className='text-center'>Ma Liste</h2>
+            <h2 className='text-center titre'>Ma Liste</h2>
 
             {
                 data.length === 0 ?

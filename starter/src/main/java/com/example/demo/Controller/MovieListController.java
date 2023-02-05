@@ -3,6 +3,9 @@ package com.example.demo.Controller;
 import com.example.demo.Modele.MovieList;
 import com.example.demo.Service.MovieListService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,10 +39,15 @@ public class MovieListController {
     /**
      * @param idUser : user's id
      * @param idMovie : movie's id
-     * @return MovieList : return movieList
+     * @return ResponseEntity : en fonction du résultat du service, envoie echec ou success
      * */
     @PostMapping("/addMovieOnAList/{idUser}/{idMovie}")
-    public MovieList addMovieOnUserList(@RequestBody MovieList movieOnList, @PathVariable int idUser,@PathVariable int idMovie){
-        return movieListService.addMovieOnUserList(movieOnList, idUser, idMovie);
+    public ResponseEntity<String> addMovieOnUserList(@RequestBody MovieList movieOnList, @PathVariable int idUser, @PathVariable int idMovie){
+        MovieList movieList = movieListService.addMovieOnUserList(movieOnList, idUser, idMovie);
+        if(movieList!=null){
+            return new ResponseEntity<>("Le film " + movieList.getMovie().getTitle() + " a été ajouté à votre liste.", HttpStatus.CREATED);
+        }else {
+            return new ResponseEntity<>("Le film est déjà présent dans votre liste !",HttpStatus.UNPROCESSABLE_ENTITY);
+        }
     }
 }

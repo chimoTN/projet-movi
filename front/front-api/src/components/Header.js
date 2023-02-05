@@ -20,7 +20,12 @@ const HeaderComponent = () => {
     ];
 
     return (
-        <Menu theme="dark" mode="horizontal" items={items} />
+        <Menu
+            theme="dark"
+            mode="horizontal"
+            items={items}
+            style={{ height: "82px", fontSize: "19px", lineHeight: "72px" }}
+        />
     )
 }
 

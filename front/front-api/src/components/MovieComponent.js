@@ -33,12 +33,12 @@ const MoviesComponent = () => {
     return (
 
         <Fragment>
-            <h1 className='text-center'>Catalogue Films</h1>
+            <h1 className='text-center titre'>Catalogue Films</h1>
 
             {
                 data.length === 0 ?
                     (
-                        <h2 className='no-data'>Aucun film enregisté dans votre liste</h2>
+                        <h2 className='no-data'>Aucun film enregistré dans notre service</h2>
                     )
                     :
                     <div className='MovieComponent'>

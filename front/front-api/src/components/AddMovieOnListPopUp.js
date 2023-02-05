@@ -5,6 +5,8 @@ import Axios from 'axios';
 
 const AddMovieOnListPopUpComponent = (props) => {
     const { openPopUp, setOpenPopUp, addMovie } = props
+    const [isOnclickToButtonAdd, setIsOnclickToButtonAdd] = useState(false);
+    const [messageIsMovieAdd, setmessageIsMovieAdd] = useState("");
 
     const [movie, setMovie] = useState(
         {
@@ -21,10 +23,11 @@ const AddMovieOnListPopUpComponent = (props) => {
                     note: movie.note,
                     viewCount: movie.viewCount
                 })
-            .then((response) => console.log("rep = ", response))
-            .catch((error) => console.log("erreur => ", error))
+            .then((response) => setmessageIsMovieAdd(response.data))
+            .catch((error) => setmessageIsMovieAdd(error.response.data))
 
-        handleOk()
+        setIsOnclickToButtonAdd(true)
+        setOpenPopUp(true)
     }
 
     const updateMovie = (e) => {
@@ -42,41 +45,69 @@ const AddMovieOnListPopUpComponent = (props) => {
 
     return (
         <>
-            <Modal
-                title={addMovie[1]}
-                open={openPopUp}
-                onOk={handleOk}
-                onCancel={handleCancel}
-                footer={[
-                    <Button key="back" onClick={handleCancel}>
-                        Annuler
-                    </Button>,
-                    <Button key="submit" type="primary" onClick={addOneMovie}>
-                        Ajouter
-                    </Button>
-                ]}
-            >
-                <p>Ajouter ce film dans votre liste ?</p>
-                <Form>
-                    <Form.Item label="Note">
-                        <Input
-                            name="note"
-                            value={movie.note}
-                            onChange={updateMovie}
-                        />
+            {
+                !isOnclickToButtonAdd ?
+                    (
+                        <Modal
 
-                    </Form.Item>
+                            title={addMovie[1]}
+                            open={openPopUp}
+                            onOk={handleOk}
+                            onCancel={handleCancel}
+                            footer={[
+                                <Button key="back" onClick={handleCancel}>
+                                    Annuler
+                                </Button>,
+                                <Button key="submit" type="primary" onClick={addOneMovie}>
+                                    Ajouter
+                                </Button>
+                            ]}
+                        >
+                            <p>Ajouter ce film dans votre liste ?</p>
+                            <Form>
+                                <Form.Item label="Note">
+                                    <Input
+                                        name="note"
+                                        value={movie.note}
+                                        type="number"
+                                        mon="1"
+                                        max="5"
+                                        onChange={updateMovie}
+                                    />
 
-                    <Form.Item label="Nombre de vue ">
-                        <Input
-                            name="viewCount"
-                            value={movie.viewCount}
-                            onChange={updateMovie}
+                                </Form.Item>
 
-                        />
-                    </Form.Item>
-                </Form>
-            </Modal>
+                                <Form.Item label="Nombre de vue ">
+                                    <Input
+                                        name="viewCount"
+                                        value={movie.viewCount}
+                                        type="number"
+                                        mon="1"
+                                        max="100"
+                                        onChange={updateMovie}
+
+                                    />
+                                </Form.Item>
+                            </Form>
+                        </Modal>
+                    )
+                    :
+                    <Modal
+                        title={messageIsMovieAdd}
+                        open={openPopUp}
+                        onOk={handleOk}
+                        onCancel={handleCancel}
+                        footer={[
+                            <Button key="submit" type="primary" onClick={handleOk}>
+                                Ok
+                            </Button>
+                        ]}
+                    >
+                    </Modal>
+
+            }
+
+
         </>
     )
 }
