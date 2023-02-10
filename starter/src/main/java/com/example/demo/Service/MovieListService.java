@@ -53,4 +53,14 @@ public class MovieListService {
             return null;
         }
     }
+
+
+    /**
+     * @param idMovieList : user's id
+     * @param movieList : le champ note et viewCount
+     * */
+    public int updateMovieList(int idMovieList, MovieList movieList){
+        return movieListRepository.updateDetailMovieList(idMovieList,movieList.getNote(),movieList.getViewCount());
+
+    }
 }

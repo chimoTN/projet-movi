@@ -23,8 +23,8 @@ const AddMovieOnListPopUpComponent = (props) => {
                     note: movie.note,
                     viewCount: movie.viewCount
                 })
-            .then((response) => setmessageIsMovieAdd(response.data))
-            .catch((error) => setmessageIsMovieAdd(error.response.data))
+            .then((response) => setmessageIsMovieAdd(response.data) /* console.log(response.data) */)
+            .catch((error) => setmessageIsMovieAdd(error.response.data) /* console.log(error.response.data) */)
 
         setIsOnclickToButtonAdd(true)
         setOpenPopUp(true)
