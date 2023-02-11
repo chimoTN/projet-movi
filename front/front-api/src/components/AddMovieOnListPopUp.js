@@ -70,7 +70,7 @@ const AddMovieOnListPopUpComponent = (props) => {
                                         name="note"
                                         value={movie.note}
                                         type="number"
-                                        mon="1"
+                                        min="1"
                                         max="5"
                                         onChange={updateMovie}
                                     />
@@ -82,7 +82,7 @@ const AddMovieOnListPopUpComponent = (props) => {
                                         name="viewCount"
                                         value={movie.viewCount}
                                         type="number"
-                                        mon="1"
+                                        min="1"
                                         max="100"
                                         onChange={updateMovie}
 

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { EditOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Axios from 'axios';
-import { Button, Input } from 'antd';
+import { Card, Button, Input, Space } from 'antd';
 
 const DetailMovieComponent = () => {
     const [data, setData] = useState([]);
@@ -28,7 +29,7 @@ const DetailMovieComponent = () => {
         fetchData();
     }, [URL]);
 
-    const handlerMovie = (event) => {
+    const handleMovie = (event) => {
         const value = event.target.value
         const name = event.target.name
         setMovie({ ...movie, [name]: value })
@@ -48,30 +49,47 @@ const DetailMovieComponent = () => {
 
     return (
         <>
-            <div className='MovieComponent'>
-                {data.map(movie => (
-                    <div className='box view-update' key={movie.idListMovie}>
-                        <div className='boxTitle'>{movie.movie.title}</div>
-                        <div className='boxCorps'>
-                            <b>Réalisateur : </b>
+            {data.map(movie => (
+                <div className='MovieComponent' key={movie.idListMovie}>
+                    <Card
+                        title={movie.movie.title}
+                        bordered={true}
+                        headStyle={{ backgroundColor: '#252A36', color: '#ffffff', fontSize: 25 }}
+                        bodyStyle={{ backgroundColor: '#252A36', color: '#ffffff', fontSize: 17 }}
+                        style={{ width: 410 }}
+                    >
+                        <p>
+                            <label>Réalisateur</label>
                             <Input value={movie.movie.producer} readOnly />
-                            <br /><br /><b>Description</b>
+                        </p>
+                        <p>
+
+                            <label>Description</label>
                             <TextArea rows={4} value={movie.movie.description} readOnly />
-                            <br /><br />
-                            <b>Nombre de vues : </b>
-                            <Input defaultValue={movie.viewCount} onChange={handlerMovie} name="viewCount" />
-                            <br /><br />
-                            <b>Notes : </b>
-                            <Input defaultValue={movie.note} onChange={handlerMovie} name="note" />
-                        </div>
-                        <br></br>
-                        <Button type="primary" block onClick={updateMovie}>Modifier</Button>
-                        <Link to="/getMyList/1">
-                            <Button type="primary" block danger>Retour</Button>
-                        </Link>
-                    </div>
-                ))}
-            </div>
+                        </p>
+                        <p>
+                            <label>Note</label>
+                            <Input type="number" min="1" max="5" defaultValue={movie.note} name="note" onChange={handleMovie} />
+                        </p>
+                        <p>
+                            <label>Nombre de vues</label>
+                            <Input type="number" min="1" max="100" defaultValue={movie.viewCount} name="viewCount" onChange={handleMovie} />
+                        </p>
+                    </Card>
+                </div>
+            ))
+            }
+            <Space wrap direction='horizontal' style={{ width: '100%', justifyContent: 'center' }}>
+                <Link to="/getMyList/1">
+                    <Button type="primary" danger icon={<ArrowLeftOutlined />}
+                        style={{ width: '200px', height: '40px', justifyContent: 'center' }} />
+                </Link>
+
+                <Button type="primary" icon={<EditOutlined />} onClick={updateMovie}
+                    style={{ width: '200px', height: '40px', justifyContent: 'center' }} />
+
+            </Space>
+
         </>
     )
 }
