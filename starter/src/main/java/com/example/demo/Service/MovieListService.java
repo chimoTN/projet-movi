@@ -55,10 +55,18 @@ public class MovieListService {
     }
 
     /**
+     * @param idMovieList : user's id
+     * @param movieList : le champ note et viewCount
+     * */
+    public int updateMovieList(int idMovieList, MovieList movieList){
+        return movieListRepository.updateDetailMovieList(idMovieList,movieList.getNote(),movieList.getViewCount());
+
+    }
+    
+    /**
      * Cette fonction permet de supprimer un film dans la liste d'un utilisateur
      */
     public void deleteMovie(int idMovieList){
         movieListRepository.deleteById(idMovieList);
     }
-
 }

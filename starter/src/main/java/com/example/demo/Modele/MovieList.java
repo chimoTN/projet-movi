@@ -10,11 +10,11 @@ public class MovieList {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idListMovie;
 
-    @ManyToOne(targetEntity = User.class,fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(targetEntity = User.class,fetch=FetchType.EAGER)
     @JoinColumn(name = "fk_id_user", referencedColumnName = "idUser")
     private User user;
 
-    @ManyToOne(targetEntity = Movie.class,fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @ManyToOne(targetEntity = Movie.class,fetch=FetchType.EAGER)
     @JoinColumn(name = "fk_id_movie", referencedColumnName = "idMovie")
     private Movie movie;
 

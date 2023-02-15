@@ -1,11 +1,9 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Modele.MovieList;
-import com.example.demo.Repository.MovieListRepository;
 import com.example.demo.Service.MovieListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +15,6 @@ import java.util.List;
 public class MovieListController {
     @Autowired
     MovieListService movieListService;
-    MovieListRepository movieListRepository;
 
     /**
      * @param idUser : user's id to get his List of movies
@@ -54,6 +51,22 @@ public class MovieListController {
     }
 
     /**
+
+     * @param idMovieList : user's id
+     * @param movieList : le film à modifier
+     * @return ResponseEntity : en fonction du résultat du service, envoie echec ou success
+     * */
+    @PutMapping("/updateMovieOnAList/{idMovieList}")
+    public ResponseEntity<String> updateMovieOnUserList(@PathVariable int idMovieList, @RequestBody MovieList movieList){
+            int isUpdating = movieListService.updateMovieList(idMovieList, movieList);
+            if (isUpdating == 1){
+                return new ResponseEntity<>("Le film a été modifié !", HttpStatus.OK);
+            }else {
+                return new ResponseEntity<>("Le film n'existe pas !", HttpStatus.NOT_FOUND);
+            }
+    }
+}
+
      * On remove un movie de la playlist du user
      */
     @DeleteMapping ("/removePlayListUserMovie/{idMovieList}")
@@ -70,3 +83,4 @@ public class MovieListController {
     }
 
 }
+
