@@ -65,8 +65,8 @@ public class MovieListController {
                 return new ResponseEntity<>("Le film n'existe pas !", HttpStatus.NOT_FOUND);
             }
     }
-}
 
+    /*
      * On remove un movie de la playlist du user
      */
     @DeleteMapping ("/removePlayListUserMovie/{idMovieList}")
