@@ -7,7 +7,7 @@ import { RestOutlined, EyeOutlined } from '@ant-design/icons';
 
 const MyListComponent = () => {
     const [data, setData] = useState([]);
-    const URL = "http://localhost:8080/getMyList/102"
+    const URL = "http://localhost:8080/getMyList/1"
 
 
     const deleteMovieOnList = (event) =>{
