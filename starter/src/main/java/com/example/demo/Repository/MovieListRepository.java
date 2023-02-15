@@ -18,4 +18,5 @@ public interface MovieListRepository extends JpaRepository<MovieList, Integer> {
      * */
     @Query(value = "SELECT * FROM T_MOVIE_LIST m WHERE m.fk_id_user = ?1 and m.fk_id_movie = ?2", nativeQuery = true)
     List<MovieList> getDetailMovie(int idUSer, int idMovie);
+
 }

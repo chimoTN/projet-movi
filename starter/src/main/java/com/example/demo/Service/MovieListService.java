@@ -53,4 +53,12 @@ public class MovieListService {
             return null;
         }
     }
+
+    /**
+     * Cette fonction permet de supprimer un film dans la liste d'un utilisateur
+     */
+    public void deleteMovie(int idMovieList){
+        movieListRepository.deleteById(idMovieList);
+    }
+
 }
