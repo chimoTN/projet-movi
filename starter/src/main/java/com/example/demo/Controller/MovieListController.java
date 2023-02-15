@@ -65,7 +65,7 @@ public class MovieListController {
             return new ResponseEntity<String>("",HttpStatus.NO_CONTENT);
         }
         catch (Exception e ){
-            return new ResponseEntity<String>("Une erreur de requette et survenu :(",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("le film n'existe pas",HttpStatus.NOT_FOUND);
         }
     }
 
