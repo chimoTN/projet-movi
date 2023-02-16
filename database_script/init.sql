@@ -35,6 +35,9 @@ CREATE TABLE IF NOT EXISTS public.t_movie_list
         ON DELETE NO ACTION
 );
 
+INSERT INTO public.t_user(id_user,login,mot_de_passe,token)
+VALUES(1,'test','test','test');
+
 INSERT INTO public.t_movie (id_movie, description, image, producer, title) 
 VALUES (1, 'A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.', 'Avatar', 'James Cameron', 'Avatar');
 
