@@ -1,6 +1,19 @@
 version: '3'
 
 services:
+  front:
+    build: ./front/front-api/.
+    container_name: react-app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./front/front-api/src:/app/src
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    command: npm start
+
   api:
     build: ./starter/.
     container_name: api-container
@@ -10,6 +23,7 @@ services:
       - CONNEXION_DB_NAME=${POSTGRES_DB}
       - CONNEXION_DB_PORT=${PORT_DB}
       - CONNEXION_DB_HOST=db
+      - PORT_API=${PORT_API}
     ports:
       - "8080:${PORT_API}"
     depends_on:
