@@ -20,11 +20,10 @@ services:
       - CONNEXION_DB_USER=${POSTGRES_USER}
       - CONNEXION_DB_PASSWORD=${POSTGRES_PASSWORD}
       - CONNEXION_DB_NAME=${POSTGRES_DB}
-      - CONNEXION_DB_PORT=${PORT_DB}
+      - CONNEXION_DB_PORT=5432
       - CONNEXION_DB_HOST=db
-      - PORT_API=${PORT_API}
     ports:
-      - "${PORT_API}:8080"
+      - "8080:8080"
     depends_on:
       - db
     restart: always
