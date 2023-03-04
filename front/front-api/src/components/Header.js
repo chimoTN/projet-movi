@@ -16,6 +16,10 @@ const HeaderComponent = () => {
         {
             label: <Link to='/getMyList/1'> Ma List </Link>,
             key: 'Contact',
+        },
+        {
+            label: <Link to='/getMyProfil'> Mon Profil </Link>,
+            key: 'Profil',
         }
     ];
 
