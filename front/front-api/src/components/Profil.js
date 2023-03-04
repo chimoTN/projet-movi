@@ -16,9 +16,10 @@ const Profil = () => {
     };
 
 
+    //Requette de recuperation des information de l'utilateur
     const seeProfil = () => {
         Axios
-            .get(`http://localhost:8080/getUser/102`)
+            .get(`http://localhost:8080/getUser/1`)
             .then((response) => setUser(response.data))
             .catch((error) => console.log("erreur => ",error))
 
