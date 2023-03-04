@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useEffect } from 'react';
 import  Axios  from 'axios';
 import {Form} from 'antd';
-import {MyContext} from '../context/userContext'
+import {MyContext} from '../context/UserContext'
 
 const Profil = () => {
 
