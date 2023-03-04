@@ -11,6 +11,9 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    /*
+     * Return un User en fonction de l'id user passer
+     */
     public User getUser(int idUser){
         return userRepository.getReferenceById(idUser);
     }
