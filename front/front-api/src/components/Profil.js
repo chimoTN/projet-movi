@@ -7,17 +7,15 @@ import {MyContext} from '../context/UserContext'
 const Profil = () => {
 
     const { user, setUser } = useContext(MyContext);
-
-    //Requette de recuperation des information de l'utilateur
-    const seeProfil = () => {
-        Axios
-            .get(`http://localhost:8080/getUser/1`)
-            .then((response) => setUser(response.data))
-            .catch((error) => console.log("erreur => ",error))
-
-    }
+    let URL = `http://localhost:8080/getUser/1`;
 
     useEffect(() => {
+        const seeProfil = async () => {
+            const result = await Axios(
+                URL
+            );
+            setUser(result.data)
+        };
         seeProfil();
     }, []);
 
